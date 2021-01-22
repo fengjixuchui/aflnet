@@ -65,7 +65,7 @@ AFLNet adds the following options to AFL. Run ```afl-fuzz --help``` to see all o
 
 - ***-N netinfo***: server information (e.g., tcp://127.0.0.1/8554)
 
-- ***-P protocol***: application protocol to be tested (e.g., RTSP, FTP, DTLS12, DNS)
+- ***-P protocol***: application protocol to be tested (e.g., RTSP, FTP, DTLS12, DNS, DICOM, SMTP, SSH, TLS)
 
 - ***-D usec***: (optional) waiting time (in microseconds) for the server to complete its initialization 
 
@@ -143,7 +143,7 @@ cd $WORKDIR/live555/testProgs
 ./testOnDemandRTSPServer 8554
 ```
 
-After that, we ask [tcpdump data-network packet analyzer](https://tcpdump.org) to capture all traffics through the port opened by the server, which is 8554 in this case. Note that you may need to change the network interface that works for your setup using the ```-i``` option.
+After that, we ask [tcpdump data-network packet analyzer](https://www.tcpdump.org) to capture all traffics through the port opened by the server, which is 8554 in this case. Note that you may need to change the network interface that works for your setup using the ```-i``` option.
 
 ```bash
 sudo tcpdump -w rtsp.pcap -i lo port 8554
