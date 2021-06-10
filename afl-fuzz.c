@@ -489,7 +489,7 @@ u32 get_unique_state_count(unsigned int *state_sequence, unsigned int state_coun
   return result;
 }
 
-/* Check if a state sequence is interesting (e.g., new state is dicovered). Loop is taken into account */
+/* Check if a state sequence is interesting (e.g., new state is discovered). Loop is taken into account */
 u8 is_state_sequence_interesting(unsigned int *state_sequence, unsigned int state_count) {
   //limit the loop count to only 1
   u32 *trimmed_state_sequence = NULL;
@@ -763,7 +763,7 @@ void update_state_aware_variables(struct queue_entry *q, u8 dry_run)
   state_info_t *state;
   unsigned int state_count;
 
-  if (!response_buf_size) return;
+  if (!response_buf_size || !response_bytes) return;
 
   unsigned int *state_sequence = (*extract_response_codes)(response_buf, response_buf_size, &state_count);
 
@@ -8995,6 +8995,9 @@ int main(int argc, char** argv) {
         } else if (!strcmp(optarg, "HTTP")) {
           extract_requests = &extract_requests_http;
           extract_response_codes = &extract_response_codes_http;
+        } else if (!strcmp(optarg, "IPP")) {
+          extract_requests = &extract_requests_ipp;
+          extract_response_codes = &extract_response_codes_ipp;
         } else {
           FATAL("%s protocol is not supported yet!", optarg);
         }
